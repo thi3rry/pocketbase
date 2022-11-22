@@ -13,6 +13,7 @@
     import IdLabel from "@/components/base/IdLabel.svelte";
     import HorizontalScroller from "@/components/base/HorizontalScroller.svelte";
     import RecordFieldCell from "@/components/records/RecordFieldCell.svelte";
+    import OverrideComponent from "@/_custom/components/OverrideComponent.svelte";
 
     const dispatch = createEventDispatcher();
 
@@ -409,7 +410,7 @@
                     {/if}
 
                     {#each visibleFields as field (field.name)}
-                        <RecordFieldCell {record} {field} />
+                        <OverrideComponent path="components/records/RecordFieldCell.svelte" props={({record, field})} collection={collection.name} />
                     {/each}
 
                     {#if !hiddenColumns.includes("@created")}
