@@ -17,7 +17,7 @@
             const collection = await Cache.getCollection(collectionId);
             collectionName = collection.name;
         }
-        return await ApiClient.collection(collectionName).getOne(id, {'$cancelKey': `${collectionId}-${id}`});
+        return await ApiClient.collection(collectionName).getOne(id, {'$autoCancel': false});
     }
 
     let shortId = id;
