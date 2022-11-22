@@ -23,8 +23,8 @@
     import { onMount } from 'svelte';
     import Cache from "@/_custom/Cache.js";
 
-    export let collectionId;
-    export let collection;
+    export let collectionId = null;
+    export let collection = null;
     let _coll = collection;
     export let path;
     export let props;
@@ -62,11 +62,13 @@
 {#if comp}
 <svelte:component this={comp} {...props} />
 {:else}
-    {#if error}
-        <span class="label label-danger">{error}</span>
-    {:else}
-        <i class="loader"></i>
-    {/if}
+    <slot>
+        {#if error}
+            <span class="label label-danger">{error}</span>
+        {:else}
+            <i class="loader"></i>
+        {/if}
+    </slot>
 {/if}
 
 <style lang="scss">

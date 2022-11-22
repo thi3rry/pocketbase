@@ -47,7 +47,9 @@
     {:else if field.type === "relation" || field.type === "user"}
         <div class="inline-flex">
             {#each CommonHelper.toArray(record[field.name]).slice(0, 20) as item, i (i + item)}
-                <OverrideComponent path="components/base/IdLabel.svelte" props={({id: item})} collectionId={field.options.collectionId} />
+                <OverrideComponent path="components/base/IdLabel.svelte" props={({id: item})} collectionId={field.options.collectionId}>
+                    <IdLabel id={item} />
+                </OverrideComponent>
             {/each}
             {#if CommonHelper.toArray(record[field.name]).length > 20}
                 ...

@@ -410,7 +410,9 @@
                     {/if}
 
                     {#each visibleFields as field (field.name)}
-                        <OverrideComponent path="components/records/RecordFieldCell.svelte" props={({record, field})} collection={collection.name} />
+                        <OverrideComponent path="components/records/RecordFieldCell.svelte" props={({record, field})} collection={collection.name}>
+                            <RecordFieldCell {record} {field} />
+                        </OverrideComponent>
                     {/each}
 
                     {#if !hiddenColumns.includes("@created")}
