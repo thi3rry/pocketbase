@@ -4,6 +4,7 @@
     import IdLabel from "@/components/base/IdLabel.svelte";
     import FormattedDate from "@/components/base/FormattedDate.svelte";
     import RecordFilePreview from "@/components/records/RecordFilePreview.svelte";
+    import OverrideComponent from "@/_custom/components/OverrideComponent.svelte";
 
     export let record;
     export let field;
@@ -46,7 +47,9 @@
     {:else if field.type === "relation" || field.type === "user"}
         <div class="inline-flex">
             {#each CommonHelper.toArray(record[field.name]).slice(0, 20) as item, i (i + item)}
-                <IdLabel id={item} />
+                <OverrideComponent path="components/base/IdLabel.svelte" props={({id: item})} collectionId={field.options.collectionId}>
+                    <IdLabel id={item} />
+                </OverrideComponent>
             {/each}
             {#if CommonHelper.toArray(record[field.name]).length > 20}
                 ...
